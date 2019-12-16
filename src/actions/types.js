@@ -1,0 +1,9 @@
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const ADD_USER = 'ADD_USER';
+
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
+
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER';
+export const ADD_QUESTION = 'ADD_QUESTION';
