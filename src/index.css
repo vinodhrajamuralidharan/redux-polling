@@ -6,6 +6,25 @@
 	position: relative;
 }
 
+.menu > :first-child {
+	margin-left: 75%;
+}
+
+.menu {
+	border: none;
+	background-color: #005EB8 !important;
+	color: white !important;
+}
+
+.menu a {
+	color: white !important;
+}
+
+.body {
+	background-color: #005EB8;
+	color: white;
+}
+
 .ui.avatar.image {
 	margin-right: 1em !important;
 }
@@ -40,4 +59,11 @@
 
 .uploadAvatar input[type="file"] {
 	cursor: pointer;
+}
+
+.new_user {
+	border: 1px solid;
+	border-radius: 10px;
+	margin-bottom: 50px;
+	padding: 35px;
 }

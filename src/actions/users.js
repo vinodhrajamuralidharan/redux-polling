@@ -1,7 +1,7 @@
 import { saveUser } from '../utils/api';
-import { loginUser } from './authedUser';
+import { loginUser } from './loggedInUser';
 import { hideLoading, showLoading } from 'react-redux-loading';
-import { ADD_USER, RECEIVE_USERS } from './types';
+import { ADD_USER, RECEIVE_USERS } from './constants';
 
 export function receiveUsers(users) {
 	return {

@@ -1,6 +1,6 @@
-import { LOGIN_USER, LOGOUT_USER } from '../actions/types';
+import { LOGIN_USER, LOGOUT_USER } from '../actions/constants';
 
-export default function authedUser(state = null, action) {
+export default function loggedInUser(state = null, action) {
 	switch (action.type) {
 		case LOGIN_USER:
 			return action.id;

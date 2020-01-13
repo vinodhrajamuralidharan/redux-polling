@@ -50,21 +50,20 @@ class Login extends Component {
 					))}
 				</Card.Group>
 				<p>&nbsp;</p>
-				<Divider horizontal>Or</Divider>
+				<hr/>
 				<Header as='h3'>Create a new user</Header>
-				<Form onSubmit={this.handleSubmit}>
+				<Form className="new_user" onSubmit={this.handleSubmit}>
 					<Grid stackable columns={3}>
 						<Grid.Column>
 							<Form.Field>
-								<label>Select Avatar</label>
 								<ImageInput className='uploadAvatar' name='avatarURL' handleChanges={this.handleChanges} />
 							</Form.Field>
 						</Grid.Column>
 						<Grid.Column>
-							<Form.Input fluid label='Name' placeholder='Name' name='name' value={name} onChange={this.handleChanges} />
+							<Form.Input placeholder='Name' name='name' value={name} onChange={this.handleChanges} />
 						</Grid.Column>
 						<Grid.Column>
-							<Form.Button fluid label='Sign Up' disabled={name === ''}>Sign Up</Form.Button>
+							<Form.Button disabled={name === ''}>Sign Up</Form.Button>
 						</Grid.Column>
 					</Grid>
 				</Form>

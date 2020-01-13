@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER } from './types';
+import { LOGIN_USER, LOGOUT_USER } from './constants';
 
 export function loginUser(id)   {
 	return {

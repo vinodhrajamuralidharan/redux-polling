@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 
 const PrivateRoute = ({component: Component, ...props}) => {
 	const isUserAuthed = () => {
-		const {authedUser} = props;
-		return authedUser !== null;
+		const {loggedInUser} = props;
+		return loggedInUser !== null;
 	};
 
 	return (
@@ -23,12 +23,12 @@ PrivateRoute.propTypes = {
 	// from connect
 	dispatch: PropTypes.func.isRequired,
 	// from mapStateToProps
-	authedUser: PropTypes.string
+	loggedInUser: PropTypes.string
 };
 
-function mapStateToProps({authedUser}) {
+function mapStateToProps({loggedInUser}) {
 	return {
-		authedUser
+		loggedInUser
 	}
 }
 

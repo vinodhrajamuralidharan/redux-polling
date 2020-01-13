@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleAddAnswer } from '../actions/questions';
+import { handleAddAnswer } from '../actions/userQuestions';
 import { camelize } from '../utils/helpers';
 import { Card, Message, Icon, Feed, Grid, Segment, Divider, Button, Statistic } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ class Question extends Component {
 		question: PropTypes.object,
 		author: PropTypes.object.isRequired,
 		details: PropTypes.bool.isRequired,
-		authedUser: PropTypes.string.isRequired,
+		loggedInUser: PropTypes.string.isRequired,
 		authedHasAnswered: PropTypes.string,
 		stats: PropTypes.object.isRequired,
 	};
@@ -33,7 +33,7 @@ class Question extends Component {
 	};
 
 	render() {
-		const {question, author, authedUser, details, authedHasAnswered, stats} = this.props;
+		const {question, author, loggedInUser, details, authedHasAnswered, stats} = this.props;
 
 		return (
 			<Card fluid color='teal'>
@@ -98,7 +98,7 @@ class Question extends Component {
 									</Feed.Label>
 									<Feed.Content>
 										<Feed.Meta>
-											Posted by <Feed.User>{author.name}{authedUser === author.id &&
+											Posted by <Feed.User>{author.name}{loggedInUser === author.id &&
 										<span> (You)</span>}</Feed.User>
 										</Feed.Meta>
 									</Feed.Content>
@@ -112,13 +112,13 @@ class Question extends Component {
 	}
 }
 
-function mapStateToProps({questions, users, authedUser}, {id, details}) {
+function mapStateToProps({questions, users, loggedInUser}, {id, details}) {
 	const question = questions[id];
 
 	const checkAuthedHasAnswered = () => {
-		if(question.optionOne.votes.includes(authedUser))
+		if(question.optionOne.votes.includes(loggedInUser))
 			return 'Option One';
-		else if (question.optionTwo.votes.includes(authedUser))
+		else if (question.optionTwo.votes.includes(loggedInUser))
 			return 'Option Two';
 		else return null;
 	};
@@ -138,7 +138,7 @@ function mapStateToProps({questions, users, authedUser}, {id, details}) {
 		question: question || null,
 		author: users[question.author],
 		details: details !== undefined,
-		authedUser,
+		loggedInUser,
 		authedHasAnswered: checkAuthedHasAnswered(),
 		stats: createStats()
 	}

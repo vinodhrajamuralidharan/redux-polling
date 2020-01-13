@@ -1,4 +1,4 @@
-import { ADD_QUESTION, ADD_QUESTION_ANSWER, ADD_USER, RECEIVE_USERS } from '../actions/types';
+import { ADD_QUESTION, ADD_QUESTION_ANSWER, ADD_USER, RECEIVE_USERS } from '../actions/constants';
 
 export default function users(state = {}, action) {
 	switch (action.type) {
@@ -21,14 +21,14 @@ export default function users(state = {}, action) {
 				}
 			};
 		case ADD_QUESTION_ANSWER:
-			const {qid, answer, authedUser} = action;
+			const {qid, answer, loggedInUser} = action;
 
 			return {
 				...state,
-				[authedUser]: {
-					...state[authedUser],
+				[loggedInUser]: {
+					...state[loggedInUser],
 					answers: {
-						...state[authedUser].answers,
+						...state[loggedInUser].answers,
 						[qid]: answer
 					}
 				}

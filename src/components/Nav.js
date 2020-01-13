@@ -21,12 +21,12 @@ const Nav = (props) => {
 				Add Question
 			</Menu.Item>
 			<Menu.Menu position='right'>
-				{props.authedUser !== null &&
+				{props.loggedInUser !== null &&
 				<Fragment>
 					<Menu.Item>
 						<Fragment>
-							<Image src={props.authedUser.avatarURL} size='mini' avatar circular/>
-							<span>{props.authedUser.name}</span>
+							<Image src={props.loggedInUser.avatarURL} size='mini' avatar circular/>
+							<span>{props.loggedInUser.name}</span>
 						</Fragment>
 					</Menu.Item>
 					<Menu.Item as={NavLink} to='/logout' activeClassName='active'>
@@ -44,13 +44,13 @@ Nav.propTypes = {
 	// from connect
 	dispatch: PropTypes.func.isRequired,
 	// from mapStateToProps
-	authedUser: PropTypes.object
+	loggedInUser: PropTypes.object
 };
 
-function mapStateToProps({authedUser, users}) {
+function mapStateToProps({loggedInUser, users}) {
 	return {
-		authedUser: authedUser === null ? null : {
-			...users[authedUser]
+		loggedInUser: loggedInUser === null ? null : {
+			...users[loggedInUser]
 		}
 	}
 }

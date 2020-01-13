@@ -17,7 +17,7 @@ const QuestionPage = (props) => {
 
 	return (
 		<Fragment>
-			<Header as='h2' textAlign='center'>Would You Rather</Header>
+			<Header as='h2' textAlign='center'>Redux Polling</Header>
 
 			<Question id={question.id} details={true}/>
 

@@ -1,6 +1,6 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
-import { ADD_QUESTION, ADD_QUESTION_ANSWER, RECEIVE_QUESTIONS } from './types';
+import { ADD_QUESTION, ADD_QUESTION_ANSWER, RECEIVE_QUESTIONS } from './constants';
 
 export function receiveQuestions(questions) {
 	return {
@@ -11,12 +11,12 @@ export function receiveQuestions(questions) {
 
 export function handleAddQuestion(params) {
 	return (dispatch, getState) => {
-		const {authedUser} = getState();
+		const {loggedInUser} = getState();
 		const {optionOneText, optionTwoText} = params;
 
 		dispatch(showLoading());
 
-		return saveQuestion({author: authedUser, optionOneText, optionTwoText})
+		return saveQuestion({author: loggedInUser, optionOneText, optionTwoText})
 			.then((question) => dispatch(addQuestion(question)))
 			.then(() => dispatch(hideLoading()))
 	}
@@ -31,8 +31,8 @@ function addQuestion(question) {
 
 export function handleAddAnswer(qid, answer)  {
 	return (dispatch, getState) => {
-		const {authedUser} = getState();
-		const info = {qid, answer, authedUser};
+		const {loggedInUser} = getState();
+		const info = {qid, answer, loggedInUser};
 
 		dispatch(addQuestionAnswer(info));
 
@@ -45,12 +45,11 @@ export function handleAddAnswer(qid, answer)  {
 	}
 }
 
-export function addQuestionAnswer({authedUser, qid, answer}) {
+export function addQuestionAnswer({loggedInUser, qid, answer}) {
 	return {
 		type: ADD_QUESTION_ANSWER,
-		authedUser,
+		loggedInUser,
 		qid,
 		answer
 	}
 }
-

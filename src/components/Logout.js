@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { logoutUser } from '../actions/authedUser';
+import { logoutUser } from '../actions/loggedInUser';
 import PropTypes from 'prop-types';
 
 const Logout = (props) => {

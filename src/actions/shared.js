@@ -1,7 +1,7 @@
 import { getInitialData } from '../utils/api';
 import { showLoading, hideLoading } from 'react-redux-loading';
 import { receiveUsers } from './users';
-import { receiveQuestions } from './questions';
+import { receiveQuestions } from './userQuestions';
 
 export function handleInitialData() {
 	return (dispatch) => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../actions/authedUser';
+import { loginUser } from '../actions/loggedInUser';
 import { Button, Card, Image, Statistic } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ class User extends Component {
 		dispatch: PropTypes.func.isRequired,
 		// from mapStateToProps
 		user: PropTypes.object.isRequired,
-		authedUser: PropTypes.string,
+		loggedInUser: PropTypes.string,
 		isLeaderboard: PropTypes.bool.isRequired
 	};
 
@@ -23,14 +23,14 @@ class User extends Component {
 	};
 
 	render() {
-		const {user, authedUser, isLeaderboard} = this.props;
+		const {user, loggedInUser, isLeaderboard} = this.props;
 
 		return (
 			<Card centered>
 				<Card.Content>
 					<Image floated='right' circular size='tiny' src={user.avatarURL}/>
 					<Card.Header>
-						{user.name}{user.id === authedUser && <span> (You)</span>}
+						{user.name}{user.id === loggedInUser && <span> (You)</span>}
 					</Card.Header>
 					<Card.Meta>
 						@{user.id}
@@ -52,7 +52,7 @@ class User extends Component {
 				</Card.Content>
 				{isLeaderboard === false &&
 				<Card.Content extra>
-					{user.id !== authedUser
+					{user.id !== loggedInUser
 						? <Button primary fluid onClick={(e) => this.handleLogin(e, user.id)}>Login</Button>
 						: <Button primary fluid disabled>Logged In</Button>
 					}
@@ -63,12 +63,12 @@ class User extends Component {
 	}
 }
 
-function mapStateToProps({authedUser, users}, {id, isLeaderboard}) {
+function mapStateToProps({loggedInUser, users}, {id, isLeaderboard}) {
 	const user = users[id];
 
 	return {
 		user,
-		authedUser,
+		loggedInUser,
 		isLeaderboard
 	}
 }

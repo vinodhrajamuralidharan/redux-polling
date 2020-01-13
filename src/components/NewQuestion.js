@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { handleAddQuestion } from '../actions/questions';
+import { handleAddQuestion } from '../actions/userQuestions';
 import { Header, Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ class NewQuestion extends Component {
 		// from connect
 		dispatch: PropTypes.func.isRequired,
 		// from mapStateToProps
-		authedUser: PropTypes.string.isRequired
+		loggedInUser: PropTypes.string.isRequired
 	};
 
 	state = {
@@ -44,7 +44,7 @@ class NewQuestion extends Component {
 
 		return (
 			<Fragment>
-				<Header as='h2' textAlign='center'>Would You Rather</Header>
+				<Header as='h2' textAlign='center'>Redux Polling</Header>
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Group unstackable widths={2}>
 						<Form.Input label='Option One' name='optionOneText' value={optionOneText} placeholder='Add the Option One' onChange={this.handleChanges} />
@@ -59,9 +59,9 @@ class NewQuestion extends Component {
 	}
 }
 
-function mapStateToProps({authedUser}) {
+function mapStateToProps({loggedInUser}) {
 	return {
-		authedUser
+		loggedInUser
 	}
 }
 
